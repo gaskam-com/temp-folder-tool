@@ -28,7 +28,7 @@ fn tempFolderInit(path: []const u8) !void { // It's OK ! But we can add a better
     _ = bytes_written;
 }
 
-fn askUser(numberOfDays: *[]const u8) !void { // Delete this comment when the function is OK
+fn askUser(numberOfDays: *[5]u8) !void { // Delete this comment when the function is OK
     const stdin = std.io.getStdIn().reader();
     const stdout = std.io.getStdOut().writer();
 
@@ -61,7 +61,7 @@ fn checkFilesDate(path: []const u8, numberOfDays: *[5]u8) !void {
 }
 
 pub fn main() !void {
-    var numberOfDays: []const u8 = undefined;
+    var numberOfDays: [5]u8 = undefined;
     var pathTemp: []const u8 = "temp";
     std.debug.print("Hello, World!\n", .{});
 
