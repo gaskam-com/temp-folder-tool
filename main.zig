@@ -1,5 +1,17 @@
 const std = @import("std");
+const Allocator = std.mem.Allocator;
 const fs = std.fs;
+
+const Config = struct { tempFolderPath: []const u8, retentionPeriod: u32 };
+
+// Function to read the config file.
+// It returns a Config struct of the config.json file.
+fn readConfig(allocator: Allocator, path: []const u8) !std.json.Parsed(Config) {
+    // 512 is the maximum size to read, if your config is larger you should make this bigger.
+    const data = try std.fs.cwd().readFileAlloc(allocator, path, 512);
+    defer allocator.free(data);
+    return std.json.parseFromSlice(Config, allocator, data, .{ .allocate = .alloc_always });
+}
 
 // Function to create a "temp" folder in a specific path: for the moment, the path is the current working directory.
 // It creates also a file called "HowToUse.md" in the temp folder to init the using of the temp folder.
@@ -34,18 +46,6 @@ fn tempFolderInit(tempFolderPath: []const u8) !void {
     _ = bytes_written;
 }
 
-// // Function to ask the user how many days he wants to keep his files in the temp folder after their latest access.
-// fn askUser(retentionPeriod: *[5]u8) !void { // TODO undeprecate readUntilDelimiter
-//     const stdin = std.io.getStdIn().reader();
-//     const stdout = std.io.getStdOut().writer();
-
-//     try stdout.print("How many days do you want to keep your files after they have been opened?\n", .{});
-//     // _ = try stdin.readUntilDelimiter(retentionPeriod, '\n'); // deprecated: change to streamUntilDelimiter and obtain an int
-
-//     std.io.Writer(comptime Context: type, comptime WriteError: type, comptime writeFn: fn(context:Context, bytes:[]const u8)WriteError!usize)
-//     _ = try stdin.streamUntilDelimiter(&retentionPeriod.*, '\n', 4); // deprecated: change to streamUntilDelimiter and obtain an int
-// }
-
 // Function to convert nanoseconds to seconds.
 // It return an u64 to be optimized unlike the std.time.nsToSec function which return an i128.
 fn nsToSeconds(ns: i128) u64 {
@@ -54,14 +54,15 @@ fn nsToSeconds(ns: i128) u64 {
 
 // Fonction wich crawl the temp folder and check the date of the files.
 // If the date of the last access of a file is greater than the number of days chosen by the user, the file is deleted.
-fn checkFilesDate(tempFolderPath: []const u8, retentionPeriod: *[5]u8) !void {
+fn checkFilesDate(tempFolderPath: []const u8, retentionPeriod: u32) !void {
     _ = tempFolderPath;
-    // We need to convert the retentionPeriod from a string to an int.
-    std.debug.print("{}\n", .{@TypeOf(retentionPeriod)});
-    var number: u64 = try std.fmt.parseInt(u64, retentionPeriod.*, 10); // ! doesn't work because it's a string and not an int
-    std.debug.print("{}\n", .{number});
+    // * note: slice value being concatenated must be comptime-known
+    // ! error: unable to resolve comptime value
+    // const filePath = tempFolderPath ++ "/HowToUse.md";
+    // _ = filePath; // TODO: change to a loop to check all the files in the temp folder.
 
     // Get the latest access of the file.
+    // TODO We can try to use a fonction like a "cd" to go in the temp folder.
     var stat = try fs.cwd().statFile("temp/HowToUse.md");
 
     // Convert with the function nsToSeconds the latest access of the file and the current time to seconds.
@@ -79,24 +80,27 @@ fn checkFilesDate(tempFolderPath: []const u8, retentionPeriod: *[5]u8) !void {
 // Main function.
 pub fn main() !void {
     // Init the variables.
-    var retentionPeriod: [5]u8 = undefined;
-    const tempFolderPath: []const u8 = "temp";
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    const allocator = gpa.allocator();
+
+    const parsed = try readConfig(allocator, "config.json");
+    defer parsed.deinit();
+    const config = parsed.value;
+
+    const retentionPeriod: u32 = config.retentionPeriod;
+    if (retentionPeriod == 0) {
+        std.debug.print("The retention period can't be 0.\n", .{});
+        std.os.exit(1);
+    }
+    const tempFolderPath: []const u8 = config.tempFolderPath;
+
     std.debug.print("Hello, World!\n", .{});
 
     // Call the function tempFolderInit to create/initialize the temp folder.
     try tempFolderInit(tempFolderPath);
 
-    // Call the function askUser to ask the user how many days he wants to keep his files in the temp folder after their latest access.
-    // It will be remove when the GUI will be implemented.
-    // try askUser(&retentionPeriod);
-    // while (retentionPeriod[0] == '0') {
-    //     std.debug.print("You can't keep your files for 0 days, please choose a number of days greater than 0.\n", .{});
-    //     try askUser(&retentionPeriod);
-    // }
-    // std.debug.print("Files will be removed after {s} days of inactivity.\n", .{retentionPeriod});
-
     // Call the function checkFilesDate to check the date of the files in the temp folder and delete them if they are too old.
-    try checkFilesDate(tempFolderPath, &retentionPeriod);
+    try checkFilesDate(tempFolderPath, retentionPeriod);
 
     std.debug.print("Goodbye, World!\n", .{});
 }
