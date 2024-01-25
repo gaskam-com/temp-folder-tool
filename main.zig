@@ -1,6 +1,8 @@
 const std = @import("std");
 const Allocator = std.mem.Allocator;
 const fs = std.fs;
+const fileKind = fs.File.Kind;
+const bufPrint = std.fmt.bufPrint;
 
 const Config = struct { tempFolderPath: []const u8, retentionPeriod: u32 };
 
@@ -55,25 +57,44 @@ fn nsToSeconds(ns: i128) u64 {
 // Fonction wich crawl the temp folder and check the date of the files.
 // If the date of the last access of a file is greater than the number of days chosen by the user, the file is deleted.
 fn checkFilesDate(tempFolderPath: []const u8, retentionPeriod: u32) !void {
-    _ = tempFolderPath;
+    std.debug.print("{s}\n", .{tempFolderPath});
     // * note: slice value being concatenated must be comptime-known
     // ! error: unable to resolve comptime value
     // const filePath = tempFolderPath ++ "/HowToUse.md";
     // _ = filePath; // TODO: change to a loop to check all the files in the temp folder.
+    var iter_dir = try std.fs.openDirAbsolute(tempFolderPath, .{ .iterate = true });
+    defer iter_dir.close();
 
-    // Get the latest access of the file.
-    // TODO We can try to use a fonction like a "cd" to go in the temp folder.
-    var stat = try fs.cwd().statFile("temp/HowToUse.md");
+    var iterator = iter_dir.iterate();
+    while (try iterator.next()) |entry| {
+        switch (entry.kind) {
+            fileKind.file, fileKind.directory => {
+                std.debug.print("File: {s}\n", .{entry.name});
 
-    // Convert with the function nsToSeconds the latest access of the file and the current time to seconds.
-    var lastAccess = nsToSeconds(stat.atime);
-    var currentTime = nsToSeconds(std.time.nanoTimestamp());
-    // Calculate the difference between the latest access of the file and the current time.
-    var timeDifference = currentTime - lastAccess;
+                var buffer: [255]u8 = undefined;
 
-    // If the difference is greater than the number of seconds chosen by the user, delete the file.
-    if (timeDifference > retentionPeriod) {
-        try std.fs.cwd().deleteFile("temp/HowToUse.md");
+                const path = try bufPrint(&buffer, "{s}/{s}", .{ tempFolderPath, entry.name });
+                std.debug.print("{s}\n", .{path});
+
+                // Get the latest access of the file.
+                // TODO We can try to use a fonction like a "cd" to go in the temp folder.
+                const stat = if (entry.kind == fileKind.file) try fs.cwd().statFile(path) else try (try fs.openDirAbsolute(path, .{ .access_sub_paths = false })).stat();
+
+                // Convert with the function nsToSeconds the latest access of the file and the current time to seconds.
+                const lastAccess = nsToSeconds(stat.atime);
+                const currentTime = nsToSeconds(std.time.nanoTimestamp());
+                // Calculate the difference between the latest access of the file and the current time.
+                const timeDifference = currentTime - lastAccess;
+
+                // If the difference is greater than the number of seconds chosen by the user, delete the file.
+                if (timeDifference > retentionPeriod) {
+                    try std.fs.cwd().deleteFile(path);
+                }
+            },
+            else => {
+                std.debug.print("Unsupported file type: {any} (on file: {s}), currentrly supported types are file and directory\n", .{ entry.kind, entry.name });
+            },
+        }
     }
 }
 
@@ -94,7 +115,7 @@ pub fn main() !void {
     }
     const tempFolderPath: []const u8 = config.tempFolderPath;
 
-    std.debug.print("Hello, World!\n", .{});
+    // std.debug.print("Hello, World!\n", .{});
 
     // Call the function tempFolderInit to create/initialize the temp folder.
     try tempFolderInit(tempFolderPath);
@@ -102,5 +123,5 @@ pub fn main() !void {
     // Call the function checkFilesDate to check the date of the files in the temp folder and delete them if they are too old.
     try checkFilesDate(tempFolderPath, retentionPeriod);
 
-    std.debug.print("Goodbye, World!\n", .{});
+    // std.debug.print("Goodbye, World!\n", .{});
 }
