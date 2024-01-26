@@ -4,6 +4,3 @@ Todo for Temp Foleder Program
 
 main.zig
 ********
-
-[TODO :Hight:] Find how to use a variable in a path.
-[TODO :Hight:] Create a loop to check all the files and folders in the temp folder and move them in an array.
