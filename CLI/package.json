@@ -1,0 +1,16 @@
+{
+  "name": "temp-folder-tool-cli",
+  "version": "0.0.1",
+  "description": "It's a CLI for the temp folder tool",
+  "main": "bin/index.js",
+  "bin": "bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gaskam.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.7",
+    "typescript": "^5.3.3"
+  }
+}
