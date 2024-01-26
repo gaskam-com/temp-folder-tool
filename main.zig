@@ -1,6 +1,9 @@
 const std = @import("std");
 const Allocator = std.mem.Allocator;
 const fs = std.fs;
+const os = std.os;
+const json = std.json;
+const debug = std.debug;
 const fileKind = fs.File.Kind;
 const bufPrint = std.fmt.bufPrint;
 
@@ -8,11 +11,11 @@ const Config = struct { tempFolderPath: []const u8, retentionPeriod: u32 };
 
 // Function to read the config file.
 // It returns a Config struct of the config.json file.
-fn readConfig(allocator: Allocator, path: []const u8) !std.json.Parsed(Config) {
+fn readConfig(allocator: Allocator, path: []const u8) !json.Parsed(Config) {
     // 512 is the maximum size to read, if your config is larger you should make this bigger.
-    const data = try std.fs.cwd().readFileAlloc(allocator, path, 512);
+    const data = try fs.cwd().readFileAlloc(allocator, path, 512);
     defer allocator.free(data);
-    return std.json.parseFromSlice(Config, allocator, data, .{ .allocate = .alloc_always });
+    return json.parseFromSlice(Config, allocator, data, .{ .allocate = .alloc_always });
 }
 
 // Function to create a "temp" folder in a specific path: for the moment, the path is the current working directory.
@@ -21,12 +24,12 @@ fn readConfig(allocator: Allocator, path: []const u8) !std.json.Parsed(Config) {
 fn tempFolderInit(tempFolderPath: []const u8) !void {
     // Error handling for the creation of the temp folder.
     errdefer {
-        std.debug.print("Failed to create temp folder.\n", .{});
-        std.os.exit(1);
+        debug.print("Failed to create temp folder.\n", .{});
+        os.exit(1);
     }
 
     // Try to make the temp folder...
-    std.fs.cwd().makeDir(tempFolderPath) catch |e|
+    fs.cwd().makeDir(tempFolderPath) catch |e|
         switch (e) {
         error.PathAlreadyExists => {
             // Path already exists, we ignore the error and continue the execution.
@@ -37,7 +40,7 @@ fn tempFolderInit(tempFolderPath: []const u8) !void {
     // "temp" folder was created!
 
     // Try to create the file "HowToUse.md" in the temp folder.
-    const file = try std.fs.cwd().createFile(
+    const file = try fs.cwd().createFile(
         "temp/HowToUse.md",
         .{ .read = true },
     );
@@ -57,24 +60,24 @@ fn nsToSeconds(ns: i128) u64 {
 // Fonction wich crawl the temp folder and check the date of the files.
 // If the date of the last access of a file is greater than the number of days chosen by the user, the file is deleted.
 fn checkFilesDate(tempFolderPath: []const u8, retentionPeriod: u32) !void {
-    std.debug.print("{s}\n", .{tempFolderPath});
+    debug.print("{s}\n", .{tempFolderPath});
     // * note: slice value being concatenated must be comptime-known
     // ! error: unable to resolve comptime value
     // const filePath = tempFolderPath ++ "/HowToUse.md";
     // _ = filePath; // TODO: change to a loop to check all the files in the temp folder.
-    var iter_dir = try std.fs.openDirAbsolute(tempFolderPath, .{ .iterate = true });
+    var iter_dir = try fs.openDirAbsolute(tempFolderPath, .{ .iterate = true });
     defer iter_dir.close();
 
     var iterator = iter_dir.iterate();
     while (try iterator.next()) |entry| {
         switch (entry.kind) {
             fileKind.file, fileKind.directory => {
-                std.debug.print("File: {s}\n", .{entry.name});
+                debug.print("File: {s}\n", .{entry.name});
 
                 var buffer: [255]u8 = undefined;
 
                 const path = try bufPrint(&buffer, "{s}/{s}", .{ tempFolderPath, entry.name });
-                std.debug.print("{s}\n", .{path});
+                debug.print("{s}\n", .{path});
 
                 // Get the latest access of the file.
                 // TODO We can try to use a fonction like a "cd" to go in the temp folder.
@@ -88,11 +91,11 @@ fn checkFilesDate(tempFolderPath: []const u8, retentionPeriod: u32) !void {
 
                 // If the difference is greater than the number of seconds chosen by the user, delete the file.
                 if (timeDifference > retentionPeriod) {
-                    try std.fs.cwd().deleteFile(path);
+                    try fs.cwd().deleteFile(path);
                 }
             },
             else => {
-                std.debug.print("Unsupported file type: {any} (on file: {s}), currentrly supported types are file and directory\n", .{ entry.kind, entry.name });
+                debug.print("Unsupported file type: {any} (on file: {s}), currentrly supported types are file and directory\n", .{ entry.kind, entry.name });
             },
         }
     }
@@ -110,12 +113,12 @@ pub fn main() !void {
 
     const retentionPeriod: u32 = config.retentionPeriod;
     if (retentionPeriod == 0) {
-        std.debug.print("The retention period can't be 0.\n", .{});
-        std.os.exit(1);
+        debug.print("The retention period can't be 0.\n", .{});
+        os.exit(1);
     }
     const tempFolderPath: []const u8 = config.tempFolderPath;
 
-    // std.debug.print("Hello, World!\n", .{});
+    // debug.print("Hello, World!\n", .{});
 
     // Call the function tempFolderInit to create/initialize the temp folder.
     try tempFolderInit(tempFolderPath);
@@ -123,5 +126,5 @@ pub fn main() !void {
     // Call the function checkFilesDate to check the date of the files in the temp folder and delete them if they are too old.
     try checkFilesDate(tempFolderPath, retentionPeriod);
 
-    // std.debug.print("Goodbye, World!\n", .{});
+    // debug.print("Goodbye, World!\n", .{});
 }
