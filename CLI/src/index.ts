@@ -6,7 +6,7 @@ const figlet = require("figlet");
 import fs from "fs";
 
 const program = new Command();
-const configPath = "./../src/config.json"; // TODO change to can be used everywhere
+const configPath = "./../../src/config.json";
 
 program
     .version(LIB_VERSION)
@@ -73,7 +73,7 @@ if (options.path) {
 }
 
 if (options.retention) {
-    const time = typeof options.retention === "string" ? options.retention : "1";
+    const time = typeof options.retention === "string" ? options.retention : "60";
     changeRetentionPeriod(time);
 }
 

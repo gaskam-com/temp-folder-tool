@@ -18,7 +18,7 @@ const { Command } = require("commander");
 const figlet = require("figlet");
 const fs_1 = __importDefault(require("fs"));
 const program = new Command();
-const configPath = "./../src/config.json"; // TODO change to can be used everywhere
+const configPath = "./../../src/config.json";
 program
     .version(version_1.LIB_VERSION)
     .description("TempFolderTool is a CLI tool to create a folder wich will delete files after a period of time")
@@ -71,7 +71,7 @@ if (options.path) {
     changeTempFolderPath(filepath);
 }
 if (options.retention) {
-    const time = typeof options.retention === "string" ? options.retention : "1";
+    const time = typeof options.retention === "string" ? options.retention : "60";
     changeRetentionPeriod(time);
 }
 if (options.config) {
