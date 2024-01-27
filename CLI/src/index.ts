@@ -14,9 +14,11 @@ program
     )
     .option("-p, --path  [value]", "change the path of the temp folder")
     .option(
-        "-t, --time [value]",
-        "change the time after which the files will be deleted"
+        "-r, --retention [value]",
+        "change the retention period of the temp folder"
     )
+    .option("-c, --config", "show the current config")
+    .option("-g, --github", "open the github page")
     .parse(process.argv);
 
 const options = program.opts();
@@ -49,9 +51,18 @@ async function changeRetentionPeriod(time: string) {
     }
 }
 
-if (options.time) {
-    const time = typeof options.time === "string" ? options.time : "1";
-    changeRetentionPeriod(time);
+async function showConfig() {
+    try {
+        const configData = fs.readFileSync(configPath, "utf-8");
+        const config = JSON.parse(configData);
+        console.log(
+            "-----| CURRENT CONFIG |-----\n",
+            config,
+            "\n----------------------------"
+        );
+    } catch (error) {
+        console.error("Error occurred while reading the config file!", error);
+    }
 }
 
 if (options.path) {
@@ -60,7 +71,20 @@ if (options.path) {
     changeTempFolderPath(filepath);
 }
 
+if (options.retention) {
+    const time = typeof options.retention === "string" ? options.retention : "1";
+    changeRetentionPeriod(time);
+}
+
+if (options.config) {
+    showConfig();
+}
+
+if (options.github) {
+    console.log("TempFolderTool Github Page: https://github.com/PatafixPLTX/temp-folder-tool");
+}
+
 if (!process.argv.slice(2).length) {
-    console.log(figlet.textSync("Temp Folder CLI"));
+    console.log(figlet.textSync("Temp Folder CLI"), "\n");
     program.outputHelp();
 }

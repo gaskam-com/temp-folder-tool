@@ -17,12 +17,14 @@ const { Command } = require("commander");
 const figlet = require("figlet");
 const fs_1 = __importDefault(require("fs"));
 const program = new Command();
-const configPath = "./../src/config.json";
+const configPath = "./../src/config.json"; // TODO change to can be used everywhere
 program
-    .version("1.0.0")
+    .version("0.0.1")
     .description("TempFolderTool is a CLI tool to create a folder wich will delete files after a period of time")
     .option("-p, --path  [value]", "change the path of the temp folder")
-    .option("-t, --time [value]", "change the time after which the files will be deleted")
+    .option("-r, --retention [value]", "change the retention period of the temp folder")
+    .option("-c, --config", "show the current config")
+    .option("-g, --github", "open the github page")
     .parse(process.argv);
 const options = program.opts();
 function changeTempFolderPath(filepath) {
@@ -51,16 +53,34 @@ function changeRetentionPeriod(time) {
         }
     });
 }
-if (options.time) {
-    const time = typeof options.time === "string" ? options.time : "1";
-    changeRetentionPeriod(time);
+function showConfig() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const configData = fs_1.default.readFileSync(configPath, "utf-8");
+            const config = JSON.parse(configData);
+            console.log("-----| CURRENT CONFIG |-----\n", config, "\n----------------------------");
+        }
+        catch (error) {
+            console.error("Error occurred while reading the config file!", error);
+        }
+    });
 }
 if (options.path) {
     const filepath = typeof options.path === "string" ? options.path : __dirname;
     changeTempFolderPath(filepath);
 }
+if (options.retention) {
+    const time = typeof options.retention === "string" ? options.retention : "1";
+    changeRetentionPeriod(time);
+}
+if (options.config) {
+    showConfig();
+}
+if (options.github) {
+    console.log("TempFolderTool Github Page: https://github.com/PatafixPLTX/temp-folder-tool");
+}
 if (!process.argv.slice(2).length) {
-    console.log(figlet.textSync("Temp Folder CLI"));
+    console.log(figlet.textSync("Temp Folder CLI"), "\n");
     program.outputHelp();
 }
 //# sourceMappingURL=index.js.map
