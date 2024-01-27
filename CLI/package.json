@@ -1,16 +1,24 @@
 {
-  "name": "temp-folder-tool-cli",
-  "version": "0.0.1",
-  "description": "It's a CLI for the temp folder tool",
-  "main": "bin/index.js",
-  "bin": "bin/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Gaskam.com",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.11.7",
-    "typescript": "^5.3.3"
-  }
+    "name": "tempfoldertool-cli",
+    "version": "0.0.1",
+    "description": "",
+    "main": "dist/index.js",
+    "bin": {
+        "tempfolder": "./dist/index.js"
+    },
+    "scripts": {
+        "build": "npx tsc",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "commander": "^11.1.0",
+        "figlet": "^1.7.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.7",
+        "typescript": "^5.3.3"
+    }
 }
