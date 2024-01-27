@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 
+import { LIB_VERSION } from './version';
 const { Command } = require("commander");
 const figlet = require("figlet");
 import fs from "fs";
@@ -8,7 +9,7 @@ const program = new Command();
 const configPath = "./../src/config.json"; // TODO change to can be used everywhere
 
 program
-    .version("0.0.1")
+    .version(LIB_VERSION)
     .description(
         "TempFolderTool is a CLI tool to create a folder wich will delete files after a period of time"
     )

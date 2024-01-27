@@ -13,13 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const version_1 = require("./version");
 const { Command } = require("commander");
 const figlet = require("figlet");
 const fs_1 = __importDefault(require("fs"));
 const program = new Command();
 const configPath = "./../src/config.json"; // TODO change to can be used everywhere
 program
-    .version("0.0.1")
+    .version(version_1.LIB_VERSION)
     .description("TempFolderTool is a CLI tool to create a folder wich will delete files after a period of time")
     .option("-p, --path  [value]", "change the path of the temp folder")
     .option("-r, --retention [value]", "change the retention period of the temp folder")
