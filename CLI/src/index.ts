@@ -13,12 +13,13 @@ program
     .description(
         "TempFolderTool is a CLI tool to create a folder wich will delete files after a period of time"
     )
-    .option("-p, --path  [value]", "change the path of the temp folder")
+    .option("-p, --path  [path]", "change the path of the temp folder")
     .option(
         "-r, --retention [value]",
         "change the retention period of the temp folder"
     )
-    .option("-c, --config", "show the current config")
+    .option("-c, --custom [path] [value]", "set a custom retention period for a file")
+    .option("-s, --show", "show the current config")
     .option("-g, --github", "open the github page")
     .parse(process.argv);
 
@@ -77,7 +78,13 @@ if (options.retention) {
     changeRetentionPeriod(time);
 }
 
-if (options.config) {
+if (options.custom) {
+    // const filename = typeof options.custom === "string" ? options.custom : "";
+    // const time = typeof options.custom === "string" ? options.custom : "60";
+    console.log("Custom retention period is not yet implemented!");
+}
+
+if (options.show) {
     showConfig();
 }
 

@@ -1,4 +1,14 @@
 {
   "tempFolderPath": "/workspaces/temp-folder-tool/CLI/dist/../../temp",
-  "retentionPeriod": 60
+  "retentionPeriod": 60,
+  "custom": [
+    {
+      "name": "HowToUse.md",
+      "retentionPeriod": 86400
+    },
+    {
+      "name": "customFile.txt",
+      "retentionPeriod": 180
+    }
+  ]
 }
