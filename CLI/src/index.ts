@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 
-import internal from "stream";
 import { LIB_VERSION } from "./version";
 const { Command } = require("commander");
 const figlet = require("figlet");
