@@ -68,7 +68,7 @@ async function showConfig() {
 
 if (options.path) {
     const filepath =
-        typeof options.path === "string" ? options.path : __dirname;
+        typeof options.path === "string" ? options.path : __dirname +"/../../temp";
     changeTempFolderPath(filepath);
 }
 

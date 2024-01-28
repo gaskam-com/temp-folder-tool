@@ -1,1 +1,4 @@
-{"tempFolderPath": "C:/Users/Patafix/Desktop/temp-folder-tool/temp/","retentionPeriod": 60}
+{
+  "tempFolderPath": "/workspaces/temp-folder-tool/CLI/dist/../../temp",
+  "retentionPeriod": 60
+}
