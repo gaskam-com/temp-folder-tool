@@ -6,7 +6,7 @@ const figlet = require("figlet");
 import fs from "fs";
 
 const program = new Command();
-const configPath = "./../../src/config.json";
+const configPath = __dirname +"/../../src/config.json";
 
 program
     .version(LIB_VERSION)

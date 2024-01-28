@@ -18,7 +18,7 @@ const { Command } = require("commander");
 const figlet = require("figlet");
 const fs_1 = __importDefault(require("fs"));
 const program = new Command();
-const configPath = "./../../src/config.json";
+const configPath = __dirname + "/../../src/config.json";
 program
     .version(version_1.LIB_VERSION)
     .description("TempFolderTool is a CLI tool to create a folder wich will delete files after a period of time")
