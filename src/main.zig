@@ -39,9 +39,10 @@ fn tempFolderInit(tempFolderPath: []const u8) !void {
     };
     // "temp" folder was created!
 
+    // TODO try to create the file "HowToUse.md" in the temp folder anywhere in the system.
     // Try to create the file "HowToUse.md" in the temp folder.
     const file = try fs.cwd().createFile(
-        "temp/HowToUse.md",
+        "../temp/HowToUse.md",
         .{ .read = true },
     );
     defer file.close();
@@ -61,10 +62,6 @@ fn nsToSeconds(ns: i128) u64 {
 // If the date of the last access of a file is greater than the number of days chosen by the user, the file is deleted.
 fn checkFilesDate(tempFolderPath: []const u8, retentionPeriod: u32) !void {
     debug.print("{s}\n", .{tempFolderPath});
-    // * note: slice value being concatenated must be comptime-known
-    // ! error: unable to resolve comptime value
-    // const filePath = tempFolderPath ++ "/HowToUse.md";
-    // _ = filePath; // TODO: change to a loop to check all the files in the temp folder.
     var iter_dir = try fs.openDirAbsolute(tempFolderPath, .{ .iterate = true });
     defer iter_dir.close();
 
@@ -80,7 +77,6 @@ fn checkFilesDate(tempFolderPath: []const u8, retentionPeriod: u32) !void {
                 debug.print("{s}\n", .{path});
 
                 // Get the latest access of the file.
-                // TODO We can try to use a fonction like a "cd" to go in the temp folder.
                 const stat = if (entry.kind == fileKind.file) try fs.cwd().statFile(path) else try (try fs.openDirAbsolute(path, .{ .access_sub_paths = false })).stat();
 
                 // Convert with the function nsToSeconds the latest access of the file and the current time to seconds.
