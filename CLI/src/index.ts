@@ -1,26 +1,32 @@
 #! /usr/bin/env node
 
-import { LIB_VERSION } from './version';
+import { LIB_VERSION } from "./version";
 const { Command } = require("commander");
 const figlet = require("figlet");
 import fs from "fs";
 
 const program = new Command();
-const configPath = __dirname +"/../../src/config.json";
+const configPath = __dirname + "/../../src/config.json";
 
 program
     .version(LIB_VERSION)
     .description(
-        "TempFolderTool is a CLI tool to create a folder wich will delete files after a period of time"
+        "TempFolderTool is a CLI tool to create a folder which will delete files after a period of time"
     )
-    .option("-p, --path  [path]", "change the path of the temp folder")
+    .option(
+        "-p, --path  [path]",
+        "change the path of the temp folder (default: yourprogramfolderpath/temp)"
+    )
     .option(
         "-r, --retention [value]",
-        "change the retention period of the temp folder"
+        "change the retention period of the temp folder (default: 60)"
     )
-    .option("-c, --custom [path] [value]", "set a custom retention period for a file")
-    .option("-s, --show", "show the current config")
-    .option("-g, --github", "open the github page")
+    .option(
+        "-c, --custom <'file name'|'value'>",
+        "set a custom retention period for a file (separated by a coma)"
+    )
+    .option("-s, --show", "show the current config.json file")
+    .option("-g, --github", "give the link to the GitHub page")
     .parse(process.argv);
 
 const options = program.opts();
@@ -67,21 +73,45 @@ async function showConfig() {
     }
 }
 
+async function addCustomRetentionPeriod(name: string, time: string) {
+    try {
+        const configData = fs.readFileSync(configPath, "utf-8");
+        const config = JSON.parse(configData);
+        const customRetention = { fileName: name, retentionPeriod: time };
+        if (!config.custom) {
+            config.custom = [];
+        }
+        config.custom.push(customRetention);
+        fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
+    } catch (error) {
+        console.error(
+            "Error occurred while reading or writing the config file!",
+            error
+        );
+    }
+}
+
 if (options.path) {
     const filepath =
-        typeof options.path === "string" ? options.path : __dirname +"/../../temp";
+        typeof options.path === "string"
+            ? options.path
+            : __dirname + "/../../temp";
     changeTempFolderPath(filepath);
 }
 
 if (options.retention) {
-    const time = typeof options.retention === "string" ? options.retention : "60";
+    const time =
+        typeof options.retention === "string" ? options.retention : "60";
     changeRetentionPeriod(time);
 }
 
 if (options.custom) {
-    // const filename = typeof options.custom === "string" ? options.custom : "";
-    // const time = typeof options.custom === "string" ? options.custom : "60";
-    console.log("Custom retention period is not yet implemented!");
+    const [name, time] = options.custom.split(",");
+    if (!name || !time) {
+        console.error("Please provide a file name and a time! (don't forget the coma)");
+        process.exit(1);
+    }
+    addCustomRetentionPeriod(name, time);
 }
 
 if (options.show) {
@@ -89,7 +119,9 @@ if (options.show) {
 }
 
 if (options.github) {
-    console.log("TempFolderTool Github Page: https://github.com/PatafixPLTX/temp-folder-tool");
+    console.log(
+        "TempFolderTool Github Page: https://github.com/PatafixPLTX/temp-folder-tool"
+    );
 }
 
 if (!process.argv.slice(2).length) {

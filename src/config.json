@@ -3,11 +3,11 @@
   "retentionPeriod": 60,
   "custom": [
     {
-      "name": "HowToUse.md",
+      "fileName": "HowToUse.md",
       "retentionPeriod": 86400
     },
     {
-      "name": "customFile.txt",
+      "fileName": "customFile.txt",
       "retentionPeriod": 180
     }
   ]
