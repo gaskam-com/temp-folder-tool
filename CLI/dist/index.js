@@ -25,6 +25,7 @@ program
     .option("-p, --path  [path]", "change the path of the temp folder (default: yourprogramfolderpath/temp)")
     .option("-r, --retention [value]", "change the retention period of the temp folder (default: 60)")
     .option("-c, --custom <'file name'|'value'>", "set a custom retention period for a file (separated by a coma)")
+    .option("-crm, --customRemove <'file name'>", "remove a custom retention period for a file")
     .option("-s, --show", "show the current config.json file")
     .option("-g, --github", "give the link to the GitHub page")
     .parse(process.argv);
@@ -67,7 +68,7 @@ function showConfig() {
         }
     });
 }
-function addCustomRetentionPeriod(name, time) {
+function addCustom(name, time) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const configData = fs_1.default.readFileSync(configPath, "utf-8");
@@ -76,7 +77,15 @@ function addCustomRetentionPeriod(name, time) {
             if (!config.custom) {
                 config.custom = [];
             }
-            config.custom.push(customRetention);
+            else {
+                const existingIndex = config.custom.findIndex((custom) => custom.fileName === name);
+                if (existingIndex !== -1) {
+                    config.custom[existingIndex] = customRetention;
+                }
+                else {
+                    config.custom.push(customRetention);
+                }
+            }
             fs_1.default.writeFileSync(configPath, JSON.stringify(config, null, 2));
         }
         catch (error) {
@@ -91,16 +100,36 @@ if (options.path) {
     changeTempFolderPath(filepath);
 }
 if (options.retention) {
-    const time = typeof options.retention === "string" ? options.retention : "60";
+    const time = typeof options.retention === "string"
+        ? parseInt(options.retention)
+        : 60;
     changeRetentionPeriod(time);
 }
 if (options.custom) {
-    const [name, time] = options.custom.split(",");
-    if (!name || !time) {
+    const [name, retention] = options.custom.split(",");
+    if (!name || !retention) {
         console.error("Please provide a file name and a time! (don't forget the coma)");
         process.exit(1);
     }
-    addCustomRetentionPeriod(name, time);
+    const time = parseInt(retention);
+    addCustom(name, time);
+}
+if (options.customRemove) {
+    try {
+        const configData = fs_1.default.readFileSync(configPath, "utf-8");
+        const config = JSON.parse(configData);
+        const existingIndex = config.custom.findIndex((custom) => custom.fileName === options.customRemove);
+        if (existingIndex !== -1) {
+            config.custom.splice(existingIndex, 1);
+            fs_1.default.writeFileSync(configPath, JSON.stringify(config, null, 2));
+        }
+        else {
+            console.error("No custom retention period found for this file!");
+        }
+    }
+    catch (error) {
+        console.error("Error occurred while reading or writing the config file!", error);
+    }
 }
 if (options.show) {
     showConfig();
