@@ -42,7 +42,7 @@ fn tempFolderInit(tempFolderPath: []const u8) !void {
     // TODO try to create the file "HowToUse.md" in the temp folder anywhere in the system.
     // Try to create the file "HowToUse.md" in the temp folder.
     const file = try fs.cwd().createFile(
-        "../temp/HowToUse.md",
+        "../HowToUse.md",
         .{ .read = true },
     );
     defer file.close();

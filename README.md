@@ -17,6 +17,7 @@ Pre-requisites:
 
 -   [Bun](https://bun.sh/)
 -   [Zig](https://ziglang.org/)
+-   Make sure that you have unrestricted custom commands in your PowerShell. To do this, run `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine` in PowerShell as an administrator.
 
 1. Copy the repository to your computer:
 
