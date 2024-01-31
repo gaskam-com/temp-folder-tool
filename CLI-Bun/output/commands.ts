@@ -1,7 +1,8 @@
+import { title, description} from "./output.json";
 import figlet from "figlet";
 import standard from "figlet/importable-fonts/Standard.js";
 figlet.parseFont("Standard", standard);
-const banner = figlet.textSync("Temp Folder CLI", {
+const banner = figlet.textSync(title, {
     font: "Standard",
 });
 
@@ -30,7 +31,7 @@ export function register(aliases: string[], pattern: string, callback: (args: st
 export function init() {
     if (command === undefined) {
         console.log(banner);
-        console.log("\nUsage: temp <command> [options]\n");
+        console.log(description);
         console.log("Commands:");
         functions.forEach((pattern, aliases) => {
             const alias = aliases.join(", ");
