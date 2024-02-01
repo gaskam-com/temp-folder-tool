@@ -16,11 +16,10 @@ init();
 function showConfig() {
     try {
         Bun.file(configPath).json().then((data) => {
-            console.log(
-                "-----| CURRENT CONFIG |-----\n",
-                data,
-                "\n----------------------------"
-            );
+            console.log("-----| CURRENT CONFIG |-----");
+            console.log(data);
+            console.log("----------------------------");
+
         });
     } catch (error) {
         console.error("Error occurred while reading the config file!", error);
