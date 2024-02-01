@@ -1,0 +1,15 @@
+{
+  "name": "cli-bun",
+  "version": "0.0.2",
+  "module": "index.ts",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "figlet": "^1.7.0"
+  }
+}
