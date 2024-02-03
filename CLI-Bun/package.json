@@ -11,5 +11,12 @@
   "type": "module",
   "dependencies": {
     "figlet": "^1.7.0"
+  },
+  "scripts": {
+    "register": "bun link && bun link cli-bun",
+    "unregister": "bun unlink && bun unlink CLI-Bun"
+  },
+  "bin": {
+    "tempFolderCli": "./index.ts"
   }
 }
