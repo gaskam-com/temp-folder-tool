@@ -38,18 +38,6 @@ fn tempFolderInit(tempFolderPath: []const u8) !void {
         else => return e,
     };
     // "temp" folder was created!
-
-    // TODO try to create the file "HowToUse.md" in the temp folder anywhere in the system.
-    // Try to create the file "HowToUse.md" in the temp folder.
-    const file = try fs.cwd().createFile(
-        "../HowToUse.md",
-        .{ .read = true },
-    );
-    defer file.close();
-
-    // Write the content of the file "HowToUse.md".
-    const bytes_written = try file.writeAll("# Temp Folder Tool \n### How to use this temp folder ? \n\n1. Execute the program 'TempFolderTool' pined on your desktop. \n2. Choose your settings, like the time you want to keep every file in the temp folder after their latest access. \n3. You can configure a personilized time for each file in the temp folder. \n4. And I invite you to explore the other options. \n5. Enjoy !");
-    _ = bytes_written;
 }
 
 // Function to convert nanoseconds to seconds.
