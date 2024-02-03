@@ -1,5 +1,5 @@
 {
-  "name": "cli-bun",
+  "name": "tempfolder-cli",
   "version": "0.0.2",
   "module": "index.ts",
   "devDependencies": {
