@@ -2,58 +2,120 @@
 
 This project is a tool to create a folder where files can be stored temporarily with a custom retention period. It's useful for storing files that are only needed for a short time, such as files that you downloaded or screenshots that you took.
 We programmed this in Zig because we wanted to learn a new language and Zig seemed like a good choice for performance. For the CLI, we used TypeScript ❤. All of this to maximize performance!
+For the GUI, we used Bun and Preact to create a simple and fast interface.
 
 ## Installation
 
 ### Simple installation - _recommended_
 
-1. Download the latest release from [Microsoft Store](https://www.microsoft.com/store/apps/), from [Steam](https://store.steampowered.com/), or on this repository's [releases](https://github.com/Patafix/temp-folder-tool/releases) page.
-2. Run the installer and follow the instructions.
-3. Open the app and enjoy!
+> **Note:** The application is not yet available for public download. It's comming soon!
 
 ### Manual installation
 
-Pre-requisites:
+You can also install the application manually by following the steps below:
 
--   [Bun](https://bun.sh/)
--   [Zig](https://ziglang.org/)
--   Make sure that you have unrestricted custom commands in your PowerShell. To do this, run `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine` in PowerShell as an administrator.
+#### Pre-requisites:
 
-1. Copy the repository to your computer:
+**Install Bun**
 
--   Old methods: `git clone https://github.com/PatafixPLTX/temp-folder-tool.git`
--   New methods: `gh repo clone PatafixPLTX/temp-folder-tool`
--   Download the repository as a ZIP file and extract it.
+For Windows :
+```terminal
+powershell -c "irm bun.sh/install.ps1|iex"
+```
 
-2. Install the dependencies:
+For Linux, MacOS and WSL :
+```terminal
+curl -fsSL https://bun.sh/install | bash
+```
 
--   `cd temp-folder-tool/CLI && npm i`
+**Install Zig**
 
-3. Compile the App:
+Winget :
+```terminal
+winget install -e --id zig.zig.nightly
+```
 
--   `zig build`
+Chocolatey :
+```terminal
+choco install zig
+```
 
-4. Open the app and enjoy!
+Scoop :
+```terminal
+scoop install zig
+```
+
+Brew :
+```terminal
+brew install zig
+```
+
+MacPorts :
+```terminal
+port install zig
+```
+
+#### Installation:
+
+**1. Clone the repository:**
+
+```terminal
+git clone https://github.com/PatafixPLTX/temp-folder-tool.git
+```
+
+```terminal
+gh repo clone PatafixPLTX/temp-folder-tool
+```
+
+**2. Install the dependencies for the GUI:**
+
+```terminal
+cd temp-folder-tool/gui/tempfolder-preact
+npm install
+```
+
+**3. You can now run the GUI:**
+
+```terminal
+bun run dev
+```
+
+**4. You can also run the CLI:**
+
+```terminal
+cd temp-folder-tool/cli
+bun install
+bun ./index.ts
+```
+
+**5. You can run the zig script:**
+
+```terminal
+zig run main.zig
+```
 
 ## Usage
 
 ### CLI
+
+> **Note:** You can't run the command `tempfolder` directly. You need to run `bun ./index.ts` in the `cli` folder.
 
 `tempfolder --help`:
 
 ```terminal
 Usage: tempfolder [options]
 
-Options:
-  -V, --version            output the version number
-  -p, --path  [value]      change the path of the temp folder
-  -r, --retention [value]  change the retention period of the temp folder
-  -c, --config             show the current config
-  -g, --github             open the github page
-  -h, --help               display help for command
+Commands:
+  -c, --config  show the current config
+  -v, --version show the cli version number
+  -p, --path    change the path of the temp folder
+  -g, --github  open the github page
 ```
 
 ### GUI
+
+> **Note:** GUI is not yet available as a standalone application. A wiki will be available soon to explain how to use the GUI.
+
 
 ## Contributing
 
