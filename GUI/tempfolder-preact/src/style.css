@@ -47,8 +47,8 @@ h6 {
 header {
 	z-index: 1000;
 	width: 95vw;
-	height: 0;
-	padding: 5vh 0;
+	height: 7.5em;
+	padding: 0 0;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -60,7 +60,7 @@ header {
 .search-bar {
 	z-index: 1001;
 	position: sticky;
-	top: calc(5vh - 1em);
+	top: 2.75em;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 30vw;
@@ -80,7 +80,7 @@ header {
 	padding: 0 1em;
 	background: none;
 	border: none;
-	color: #ccc;
+	color: #fff;
 	font-size: 1em;
 	outline: none;
 	display: flex;
@@ -92,7 +92,7 @@ header {
 
 .placeholder {
 	width: 100%;
-	height: calc(10vh - 2em);
+	height: 5.5em;
 }
 
 button {
@@ -200,7 +200,7 @@ a {
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
-	width: 15%;
+	width: 20%;
 	margin: 0;
 	padding: 0;
 }
@@ -235,7 +235,8 @@ a {
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
-	width: 10%;
+	width: 15%;
+	min-width: fit-content;
 	margin: 0;
 	padding: 0;
 }
