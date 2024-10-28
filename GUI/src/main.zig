@@ -22,6 +22,14 @@ pub fn main() !void {
     _ = win.setRootFolder(path);
     _ = win.bind("close_app", close);
     _ = win.show("index.html");
+    const jsCommand = try std.fmt.allocPrint(allocator, "displayFolders({s});\x00", .{ try getConfig(allocator, "../APP/config.json") });
+    _ = win.run(jsCommand[0..jsCommand.len-1:0]);
     webui.wait();
     webui.clean();
+}
+
+/// Returns the content of the configuration file at the given path.
+fn getConfig(allocator: std.mem.Allocator, path: []const u8) ![]const u8 {
+    const file = std.fs.cwd().readFile(allocator, path, 1000);
+    return file;
 }

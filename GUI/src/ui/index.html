@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src=\"webui.js\"></script>
+    <script src="webui.js"></script>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <title>Temp Folder</title>
+
 </head>
 <body>
     <sidebar>
@@ -37,7 +38,12 @@
                         <p>C:/User/Documents/Je suis nul en code/Temp Folder</p>
                     </div>
                     <div class="actions">
-                        <button id="actions"></button>
+                        <button class="toggle" id="actions"></button>
+                        <div class="menu">
+                            <button id="open">Open in explorer</button>
+                            <button id="edit">Edit</button>
+                            <button class="delete" id="delete">Delete</button>
+                        </div>
                     </div>
                 </div>
                 <div class="add">
