@@ -12,16 +12,39 @@
     <sidebar>
         <h1>Temp Folder</h1>
         <nav>
-            <button onclick="Folders()">Folders</button>
-            <button onclick="Customs()">Customs</button>
-            <button onclick="Settings()">Settings</button>
+            <button id="folders">Folders</button>
+            <button id="customs">Customs</button>
+            <button id="settings">Settings</button>
         </nav>
         <div class="footer">
             <p>Coded with love by <a href="https://gaskam.com" target="_blank">Gaskam</a></p>
         </div>
     </sidebar>
-    <content>
-
-    </content>
+    <page>
+        <div class="textarea">
+            <header>
+                <div class="path">
+                    <span><a href="#">App</a> > <a href="#" id="sectionName">Folders</a></span>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="Search">
+                </div>
+            </header>
+            <content id="folders">
+                <div class="element">
+                    <div class="infos">
+                        <h4>Folder Name</h4>
+                        <p>C:/User/Documents/Je suis nul en code/Temp Folder</p>
+                    </div>
+                    <div class="actions">
+                        <button id="actions"></button>
+                    </div>
+                </div>
+                <div class="add">
+                    <button id="add">Add Folder</button>
+                </div>
+            </content>
+        </div>
+    </page>
 </body>
 </html>
