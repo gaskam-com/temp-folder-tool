@@ -1,4 +1,8 @@
 {
-  "tempFolderPath": "C:\\Users\\Patafix\\Documents\\Temp Folder",
-  "retentionPeriod": 604800
+  "tempFolders": [
+    {
+      "path": "D:\\Documents\\Github\\Gaskam\\temp-folder-tool\\APP\\Temp Folder",
+      "retention": 60
+    }
+  ]
 }

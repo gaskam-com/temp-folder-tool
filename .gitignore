@@ -8,4 +8,8 @@ jspm_packages/
 
 web_modules/
 
+.zig-cache/
+
+zig-out/
+
 *.tsbuildinfo\
