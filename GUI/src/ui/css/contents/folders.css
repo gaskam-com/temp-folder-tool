@@ -1,0 +1,244 @@
+/* Folders Page */
+
+body page .text content {
+    margin: 0;
+    padding: 7em 0 3em 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    background-color: var(--color-background);
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+body page .text content .elements {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+body page .text content .elements .element {
+    margin: 0 0 2em 0;
+    padding: 0;
+    width: var(--cards-width);
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.15);
+    transition: all 0.1s ease-in-out;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+body page .text content .elements .element .time {
+    margin: 0;
+    padding: 2em 0;
+    width: 6em;
+    text-align: center;
+    color: var(--color-text-default);
+    border-right: inset 1px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body page .text content .elements .element .time textarea {
+    width: 6em;
+    height: 1em;
+    max-height: 1em;
+    font-size: 1em;
+    line-height: 1em;
+    font-weight: bold;
+    text-align: center;
+    color: var(--color-text-default);
+}
+
+body page .text content .elements .element .infos {
+    margin: 0;
+    padding: 0;
+    padding-left: 2em;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+}
+
+body page .text content .elements .element .infos .name {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 1.5em;
+
+    display: flex;
+    align-items: start;
+    justify-content: start;
+}
+
+body page .text content .elements .element .infos .name textarea {
+    width: 100%;
+    height: 1em;
+    max-height: 1em;
+    line-height: 1em;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    color: var(--color-text-default);
+}
+
+body page .text content .elements .element .infos .path {
+    margin: 0.75em 0 0 0;
+    padding: 0;
+    width: 100%;
+    height: 1em;
+
+    display: flex;
+    align-items: start;
+    justify-content: start;
+}
+
+body page .text content .elements .element .infos .path textarea {
+    width: 100%;
+    height: 1em;
+    line-height: 1em;
+    max-height: 1em;
+    font-size: 0.75em;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    color: var(--color-text-default);
+}
+
+body page .text content .elements .element .actions {
+    margin: 0 1em;
+    padding: 0;
+    position: sticky;
+    z-index: 95;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body page .text content .elements .element .actions .toggle {
+    margin: 0;
+    padding: 1em;
+    background-color: transparent;
+    color: var(--color-text-default);
+    position: relative;
+    z-index: -1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+body page .text content .elements .element .actions .toggle::after {
+    /* TODO: center ! */
+    margin: 0;
+    padding: 0;
+    content: '\2807';
+    font-size: 2em;
+    z-index: -1;
+}
+
+body page .text content .elements .element .actions .menu {
+    visibility: hidden;
+    position: absolute;
+    margin: 9em 0 0 7em;
+    padding: .5em 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(1em);
+    transition: all 0.1s ease-in-out;
+    z-index: 97;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+body page .text content .elements .element .actions .menu.active {
+    visibility: visible;
+}
+
+body page .text content .elements .element .actions .menu button {
+    margin: 0;
+    padding: 0.25em 1em;
+    min-width: fit-content;
+    width: 100%;
+    background-color: transparent;
+    color: var(--color-text-default);
+    font-size: 1em;
+    text-wrap: nowrap;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-align: start;
+}
+
+body page .text content .elements .element .actions .menu button:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+body page .text content .elements .element .actions .menu button.delete {
+    color: var(--color-text-red);
+}
+
+body page .text content .add {
+    margin: 0;
+    padding: 0;
+    width: var(--cards-width);
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='white' stroke-width='1.5' stroke-dasharray='10' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+    border-radius: 10px;
+    border-radius: 10px;
+    transition: all 0.1s ease-in-out;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body page .text content .add button {
+    margin: 0;
+    padding: 2em 0;
+    width: 100%;
+    background-color: transparent;
+    color: var(--color-text-default);
+    font-size: 1em;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+    :root {
+        --cards-width: 90%;
+    }
+
+    body page .text content .elements .element .actions .menu {
+        margin: 9em 0 0 -3em;
+    }
+}

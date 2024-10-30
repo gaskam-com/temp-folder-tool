@@ -1,0 +1,82 @@
+/* Footer */
+
+body page footer {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 3.8125em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body page footer .save {
+    visibility: hidden;
+    margin: 0;
+    padding: 0 8px 0 1.25em;
+    width: 85.5%;
+    max-width: 50em;
+    height: 90%;
+    background-color: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(1em);
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+body page footer .save.active {
+    visibility: visible;
+}
+
+body page footer .save .buttons {
+    margin: 0;
+    padding: 0;
+    width: 20%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+body page footer .save .buttons button#save {
+    margin: 0;
+    padding: 0.5em 1em;
+    background-color: var(--color-button-save);
+    color: var(--color-text-default);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body page footer .save .buttons button#save:hover {
+    background-color: var(--color-button-save-hover);
+}
+
+body page footer .save .buttons button#cancel {
+    margin: 0 1em 0 0;
+    padding: 0.5em 1em;
+    background-color: transparent;
+    color: var(--color-text-default);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 0.85em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body page footer .save .buttons button#cancel:hover {
+    text-decoration: underline;
+}

@@ -53,7 +53,7 @@ $(function() {
                     folderContainer.appendChild(template.content.firstChild);
                 });
                 // Add event listeners
-                menuEvents();
+                elementsEvents();
             } else if (e == webui.event.DISCONNECTED) {
                 // Connection to the backend is lost
                 // window.close();

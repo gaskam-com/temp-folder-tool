@@ -1,0 +1,29 @@
+/* Header */
+
+body page .text header {
+    margin: 0;
+    padding: 0;
+    width: calc(100% - var(--navbar-width));
+    height: fit-content;
+    background-color: var(--color-background);
+    position: fixed;
+    z-index: 99;
+
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+body page .text header .header {
+    margin: 0;
+    padding: 1.5em 0.5em;
+    width: 90%;
+    border-bottom: outset .5px rgba(0, 0, 0, 0.5);
+    background-color: var(--color-background);
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

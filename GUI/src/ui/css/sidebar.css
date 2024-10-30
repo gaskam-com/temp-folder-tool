@@ -1,0 +1,199 @@
+/* Sidebar */
+
+body sidebar {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    min-width: max-content;
+    max-width: 300px;
+    height: 100vh;
+    filter: contrast(100%) brightness(150%);
+    background: linear-gradient(20deg, rgb(33, 15, 111), rgba(81, 40, 243, 0.72)),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+body sidebar .button-fold {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 75%;
+    right: 0;
+    transform: translateY(-50%);
+    transform: translateX(50%);
+    width: 2em;
+    height: 2em;
+    z-index: 101;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body sidebar .button-fold button {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-background);
+    color: var(--color-text-default);
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body sidebar .button-fold button img {
+    margin: 0;
+    padding: 0;
+    width: 1em;
+    height: 1em;
+}
+
+body sidebar h2 {
+    color: var(--color-text-default);
+    margin: 0.65em 1em;
+    padding: 0;
+    line-height: 2.5rem;
+}
+
+body sidebar.folded>h2 span {
+    display: none;
+}
+
+body sidebar.folded>h2::after {
+    content: 'TF';
+}
+
+body sidebar nav {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+body sidebar nav button {
+    margin: 1.65em 0 1em 0;
+    padding: 1em 1em;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.15);
+    color: var(--color-text-default);
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body sidebar nav button~button {
+    margin-top: 1em;
+}
+
+body sidebar.folded>nav button {
+    margin: 1.65em 1em 1em 1em;
+    width: fit-content;
+}
+
+body sidebar.folded>nav button~button {
+    margin-top: 1em;
+}
+
+body sidebar nav button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease-in-out;
+}
+
+body sidebar nav button.active {
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+}
+
+body sidebar.folded>nav button p {
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+body sidebar nav button .image {
+    margin: 0 1em 0 0;
+    padding: 0;
+    width: 1.5em;
+    height: 1.5em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body sidebar nav button .image img {
+    margin: 0;
+    padding: 0;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+body sidebar.folded>nav button .image {
+    margin: 0;
+}
+
+body sidebar nav button#button-settings .image img {
+    animation: spin 5s linear infinite paused;
+}
+
+body sidebar nav button#button-settings.active .image img {
+    animation-play-state: running;
+}
+
+body sidebar nav button#button-settings:hover>.image img {
+    animation-play-state: running;
+}
+
+body sidebar .footer {
+    margin: 2em;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+}
+
+body sidebar .footer p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.75em;
+}
+
+body sidebar.folded>.footer p {
+    display: none;
+}

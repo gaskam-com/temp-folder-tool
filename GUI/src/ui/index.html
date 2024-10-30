@@ -1,76 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <script src="webui.js"></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/backend.js"></script>
         <script src="js/app.js" defer></script>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Temp Folder</title>
-    
-</head>
-<body>
-    <sidebar>
-        <h1>Temp Folder</h1>
-        <nav>
-            <button id="button-folders">Folders</button>
-            <button id="button-settings">Settings</button>
-        </nav>
-        <div class="footer">
-            <p>Coded with love by <a href="https://gaskam.com" target="_blank">Gaskam</a></p>
-        </div>
-    </sidebar>
-    <page>
-        <div class="text">
-            <header>
-                <div class="path">
-                    <span><a href="#">App</a> > <a href="#" id="section">Folders</a></span>
-                </div>
-                <div class="search">
-                    <input type="text" placeholder="Search">
-                </div>
-            </header>
-            <content id="folders">
-                <div class="elements" id="elements">
-                    <div class="element">
-                        <div class="time">
-                            <textarea id="time" maxlength="5" readonly>12h</textarea>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/normalize.css" />
+        <link rel="stylesheet" href="./css/general.css" />
+        <link rel="stylesheet" href="./css/sidebar.css" />
+        <link rel="stylesheet" href="./css/header.css" />
+        <link rel="stylesheet" href="./css/contents/folders.css" />
+        <link rel="stylesheet" href="./css/footer.css" />
+        <title>Temp Folder</title>
+    </head>
+    <body class="noselect">
+        <sidebar id="sidebar" class="sidebar">
+            <div class="button-fold">
+                <button id="fold">
+                    <img src="img/arrow_back.svg" />
+                </button>
+            </div>
+            <h2><span>Temp Folder</span></h2>
+            <nav id="button-menu">
+                <button id="button-folders" class="active">
+                    <div class="image">
+                        <img src="img/folder_open.svg" />
+                    </div>
+                    <p>Folders</p>
+                </button>
+                <button id="button-settings">
+                    <div class="image">
+                        <img src="img/settings.svg" />
+                    </div>
+                    <p>Settings</p>
+                </button>
+            </nav>
+            <div class="footer">
+                <p>
+                    Coded with love by
+                    <a href="https://gaskam.com" target="_blank">Gaskam</a>
+                </p>
+            </div>
+        </sidebar>
+        <page>
+            <div class="text">
+                <header>
+                    <div class="header">
+                        <div class="path">
+                            <span
+                                ><a href="#">App</a> >
+                                <a href="#" id="section">Folders</a></span
+                            >
                         </div>
-                        <div class="infos">
-                            <div class="name">
-                                <textarea id="name" maxlength="40">Folder name</textarea>
-                            </div>
-                            <div class="path">
-                                <textarea id="path" readonly>C:/User/Documents/Je suis nul en code/Temp Folder</textarea>
-                            </div>
+                        <div class="search">
+                            <input type="text" placeholder="Search" />
                         </div>
-                        <div class="actions">
-                            <button class="toggle" id="actions"></button>
-                            <div class="menu">
-                                <button id="open">Open in explorer</button>
-                                <button id="edit">Edit</button>
-                                <button class="delete" id="delete">Delete</button>
+                    </div>
+                </header>
+                <content id="folders">
+                    <div class="elements" id="elements">
+                        <div class="element">
+                            <div class="time">
+                                <textarea id="time" maxlength="5" readonly>
+12h</textarea
+                                >
+                            </div>
+                            <div class="infos">
+                                <div class="name">
+                                    <textarea id="name" maxlength="40">
+Folder name</textarea
+                                    >
+                                </div>
+                                <div class="path">
+                                    <textarea id="path" readonly>
+C:/User/Documents/Je suis nul en code/Temp Folder</textarea
+                                    >
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button class="toggle" id="actions"></button>
+                                <div class="menu">
+                                    <button id="open">Open in explorer</button>
+                                    <button id="edit">Edit</button>
+                                    <button class="delete" id="delete">
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="add">
-                    <button id="add">Add Folder</button>
-                </div>
-            </content>
-        </div>
-        <footer>
-            <div class="save">
-                <p>Some changes have been made. Do you want to save them?</p>
-                <div class="buttons">
-                    <button id="cancel">Cancel</button>
-                    <button id="save">Save</button>
-                </div>
+                    <div class="add">
+                        <button id="add">Add Folder</button>
+                    </div>
+                </content>
             </div>
-        </footer>
-    </page>
-</body>
+            <footer>
+                <div class="save">
+                    <p>
+                        Some changes have been made. Do you want to save them?
+                    </p>
+                    <div class="buttons">
+                        <button id="cancel">Cancel</button>
+                        <button id="save">Save</button>
+                    </div>
+                </div>
+            </footer>
+        </page>
+    </body>
 </html>

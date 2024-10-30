@@ -12,7 +12,8 @@ pub fn main() !void {
     buffer[length] = 0;
     const path = buffer[0..length:0];
 
-    _ = win.setMinimumSize(800, 600);
+    _ = win.setPort(24568);
+    _ = win.setMinimumSize(800, 400);
     _ = win.setRootFolder(path);
     _ = win.bind("update_folders", updateFolders);
     _ = win.bind("close_app", close);
