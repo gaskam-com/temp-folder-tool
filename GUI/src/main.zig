@@ -1,14 +1,8 @@
 const webui = @import("webui");
 const std = @import("std");
 
-fn close(_: *webui.Event) void {
-    std.debug.print("Exit.\n", .{});
-
-    // Close all opened windows
-    webui.exit();
-}
-
 pub fn main() !void {
+    webui.setConfig(.folder_monitor, true);
     var win = webui.newWindow();
 
     // const allocator = std.heap.page_allocator;
@@ -20,16 +14,35 @@ pub fn main() !void {
 
     _ = win.setMinimumSize(800, 600);
     _ = win.setRootFolder(path);
+    _ = win.bind("update_folders", updateFolders);
     _ = win.bind("close_app", close);
     _ = win.show("index.html");
-    const jsCommand = try std.fmt.allocPrint(allocator, "displayFolders({s});\x00", .{ try getConfig(allocator, "../APP/config.json") });
-    _ = win.run(jsCommand[0..jsCommand.len-1:0]);
+
     webui.wait();
     webui.clean();
 }
 
+fn updateFolders(event: *webui.Event) void {
+    var buffer: [1000]u8 = undefined;
+    const path = "../APP/config.json";
+    const fileContent = getConfig(&buffer, path) catch |e| {
+        std.debug.print("Unable to read config at path: {s}\n", .{path});
+        std.debug.print("Error: {}\n", .{e});
+        std.process.exit(1);
+    };
+    buffer[fileContent.len] = 0;
+    event.returnString(buffer[0..fileContent.len:0]);
+}
+
+fn close(_: *webui.Event) void {
+    std.debug.print("Exit.\n", .{});
+
+    // Close all opened windows
+    webui.exit();
+}
+
 /// Returns the content of the configuration file at the given path.
-fn getConfig(allocator: std.mem.Allocator, path: []const u8) ![]const u8 {
-    const file = std.fs.cwd().readFile(allocator, path, 1000);
+fn getConfig(buffer: []u8, path: []const u8) ![]const u8 {
+    const file = std.fs.cwd().readFile(path, buffer);
     return file;
 }

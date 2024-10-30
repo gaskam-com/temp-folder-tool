@@ -2,12 +2,13 @@
 /* Global variables */
 :root {
     --font-system: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --effect-noise: url(data:image/png;base64,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);
 
     --color-black: #000;
     --color-off-black: #1f1f1f;
     --color-white: #fff;
     --color-off-white: #f5f5f5;
+
+    --cards-width: 80%;
 }
 
 /* Light mode */
@@ -15,6 +16,9 @@
     :root {
         --color-background: #f5f5f5;
         --color-background-overlay: #79cdd6;
+
+        --color-button-save: #004225;
+        --color-button-save-hover: #00572e;
 
         --color-text-default: #000;
         --color-text-red: rgb(255, 59, 48);
@@ -34,6 +38,9 @@
     :root {
         --color-background: #1f1f1f;
         --color-background-overlay: #0f666f;
+
+        --color-button-save: #00c771;
+        --color-button-save-hover: #10f188;
 
         --color-text-default: #f5f5f5;
         --color-text-red: rgb(255, 69, 58);
@@ -60,7 +67,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -140,6 +147,16 @@ input:focus {
     transition: all 0.1s ease-in-out;
 }
 
+textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    overflow: hidden;
+}
+
 /* Body */
 
 body {
@@ -161,8 +178,9 @@ body sidebar {
     max-width: 300px;
     width: 15%;
     height: 100vh;
-    background-image: var(--effect-noise);
-    background-color: var(--color-background-overlay);
+    filter: contrast(100%) brightness(150%);
+    background: linear-gradient(20deg, rgb(33, 15, 111), rgba(81,40,243,0.72)),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     z-index: 100;
 
     display: flex;
@@ -233,50 +251,133 @@ body sidebar .footer p {
 
 /* Content */
 
+
 body page {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100vh;
     position: relative;
-
+    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
 }
 
-body page .textarea {
+body page .text {
     margin: 0;
     padding: 0;
     width: 90%;
     height: 100%;
-
+    
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: start;
 }
 
-body page .textarea header {
+body page .text header {
     margin: 0;
     padding: 1.5em 0;
     width: 100%;
     border-bottom: outset .5px rgba(0, 0, 0, 0.5);
     overflow: hidden;
-
+    
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-body page .textarea content {
+body page footer {
+    position: relative;
+    bottom: 0;
     margin: 0;
-    padding: 3em 0 0 0;
+    padding: 0;
     width: 100%;
-    height: calc(100vh - 9em);
-    overflow-y: scroll;
+    height: 3.8125em;
+    background-color: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body page footer .save {
+    visibility: hidden;
+    margin: 0;
+    padding: 0 8px 0 1.25em;
+    width: 95%;
+    max-width: 50em;
+    height: 90%;
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+body page footer .save.active {
+    visibility: visible;
+}
+
+body page footer .save .buttons {
+    margin: 0;
+    padding: 0;
+    width: 20%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+body page footer .save .buttons button#save {
+    margin: 0;
+    padding: 0.5em 1em;
+    background-color: var(--color-button-save);
+    color: var(--color-text-default);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body page footer .save .buttons button#save:hover {
+    background-color: var(--color-button-save-hover);
+}
+
+body page footer .save .buttons button#cancel {
+    margin: 0 1em 0 0;
+    padding: 0.5em 1em;
+    background-color: transparent;
+    color: var(--color-text-default);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 0.85em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body page footer .save .buttons button#cancel:hover {
+    text-decoration: underline;
+}
+
+/* Folders Page */
+
+body page .text content {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: calc(100vh - 9em); /* TODO */
 
     display: flex;
     flex-direction: column;
@@ -284,10 +385,22 @@ body page .textarea content {
     justify-content: start;
 }
 
-body page .textarea content .element {
+body page .text content .elements {
+    margin: 0;
+    padding: 3em 0 0 0;
+    width: 100%;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+body page .text content .elements .element {
     margin: 0 0 2em 0;
-    padding: 1em 1em 1em 2em;
-    width: 60%;
+    padding: 0;
+    width: var(--cards-width);
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.15);
 
@@ -297,26 +410,87 @@ body page .textarea content .element {
     justify-content: space-between;
 }
 
-body page .textarea content .element .infos {
+body page .text content .elements .element .time {
+    margin: 0;
+    padding: 2em 0;
+    width: 6em;
+    text-align: center;
+    color: var(--color-text-default);
+    border-right: inset 1px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body page .text content .elements .element .time textarea {
+    width: 6em;
+    height: 1em;
+    max-height: 1em;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    color: var(--color-text-default);
+}
+
+body page .text content .elements .element .infos {
     margin: 0;
     padding: 0;
+    padding-left: 2em;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: start;
+    justify-content: space-between;
+}
+
+body page .text content .elements .element .infos .name {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 1.5em;
+    
+    display: flex;
+    align-items: start;
     justify-content: start;
 }
 
-body page .textarea content .element .infos p {
-    margin: .5em 0 0 0;
-    padding: 0;
-    font-size: 0.75em;
-    word-break: break-all;
-    text-wrap: wrap;
+body page .text content .elements .element .infos .name textarea {
+    width: 100%;
+    height: 1em;
+    max-height: 1em;
+    line-height: 1em;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    color: var(--color-text-default);
 }
 
-body page .textarea content .element .actions {
-    margin: 0;
+body page .text content .elements .element .infos .path {
+    margin: 0.75em 0 0 0;
+    padding: 0;
+    width: 100%;
+    height: 1em;
+
+    display: flex;
+    align-items: start;
+    justify-content: start;
+}
+
+body page .text content .elements .element .infos .path textarea {
+    width: 100%;
+    height: 1em;
+    max-height: 1em;
+    font-size: 0.75em;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    color: var(--color-text-default);
+}
+
+body page .text content .elements .element .actions {
+    margin: 0 1em;
     padding: 0;
 
     display: flex;
@@ -325,7 +499,7 @@ body page .textarea content .element .actions {
     justify-content: center;
 }
 
-body page .textarea content .element .actions .toggle {
+body page .text content .elements .element .actions .toggle {
     margin: 0;
     padding: 1em;
     background-color: transparent;
@@ -337,14 +511,14 @@ body page .textarea content .element .actions .toggle {
     text-align: center;
 }
 
-body page .textarea content .element .actions .toggle::after {
+body page .text content .elements .element .actions .toggle::after { /* TODO: center ! */
     margin: 0;
     padding: 0;
     content: '\2807';
     font-size: 2em;
 }
 
-body page .textarea content .element .actions .menu {
+body page .text content .elements .element .actions .menu {
     visibility: hidden;
     position: absolute;
     margin: 9em 0 0 7em;
@@ -360,17 +534,19 @@ body page .textarea content .element .actions .menu {
     justify-content: start;
 }
 
-body page .textarea content .element .actions .menu.active {
+body page .text content .elements .element .actions .menu.active {
     visibility: visible;
 }
 
-body page .textarea content .element .actions .menu button {
+body page .text content .elements .element .actions .menu button {
     margin: 0;
     padding: 0.25em 1em;
+    min-width: fit-content;
     width: 100%;
     background-color: transparent;
     color: var(--color-text-default);
     font-size: 1em;
+    text-wrap: nowrap;
 
     display: flex;
     align-items: center;
@@ -378,30 +554,30 @@ body page .textarea content .element .actions .menu button {
     text-align: start;
 }
 
-body page .textarea content .element .actions .menu button:hover {
+body page .text content .elements .element .actions .menu button:hover {
     background-color: rgba(0, 0, 0, 0.25);
 }
 
-body page .textarea content .element .actions .menu button.delete {
+body page .text content .elements .element .actions .menu button.delete {
     color: var(--color-text-red);
 }
 
-body page .textarea content .add {
+body page .text content .add {
     margin: 0;
     padding: 0;
-    width: calc(60% + 3em);
+    width: var(--cards-width);
     box-sizing: border-box;
-    border: inset 2px var(--color-text-default);
-    border-style: dashed;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.15);
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='white' stroke-width='1.5' stroke-dasharray='10' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+border-radius: 10px;
+    border-radius: 10px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-body page .textarea content .add button {
+body page .text content .add button {
     margin: 0;
     padding: 2em 0;
     width: 100%;
@@ -415,3 +591,14 @@ body page .textarea content .add button {
     justify-content: center;
     text-align: center;
 }
+
+/* Customs Page */
+
+
+
+/* Settings Page */
+
+
+
+/* @media */
+

@@ -1,8 +1,12 @@
 {
   "tempFolders": [
     {
-      "path": "/Users/gaspard/Documents/temp-folder-tool/APP/Temp Folder",
+      "path": "C:\\Users\\Patafix\\Desktop\\GitHub\\Gaskam\\temp-folder-tool\\APP\\Temp Folder",
       "retention": 60
+    },
+    {
+      "path": "C:\\Users\\Patafix\\Desktop\\GitHub\\Gaskam\\temp-folder-tool\\APP\\Temp Folder 2",
+      "retention": 30
     }
   ]
 }
