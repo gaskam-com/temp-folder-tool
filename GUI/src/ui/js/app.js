@@ -4,10 +4,14 @@ $(() => {
     loadEvents();
 });
 
+function genName(path) {
+    return (/[\/\\]([^\/\\]*)[\/\\]{0,1}$/d.exec(path) || [null, "Folder unreadable"])[1];
+}
+
 function loadEvents() {
     elementsEvents();
-    $("textarea").keydown(function(e){
-        if (e.keyCode == 13)
+    $("textarea").on("keydown", function(e){
+        if (e.key === "Enter")
         {
             e.preventDefault();
         }
@@ -17,14 +21,14 @@ function loadEvents() {
     var $root = $(':root');
 
     if ($navbar.length) {
-        var updateNavbarWidth = function() {
+        function updateNavbarWidth() {
             var navbarWidth = $navbar.outerWidth() + 'px';
             $root.css('--navbar-width', navbarWidth);
         };
+        
+        $(window).on("load", updateNavbarWidth);
 
-        updateNavbarWidth();
-
-        $(window).resize(updateNavbarWidth);
+        $(window).on("resize", updateNavbarWidth);
     }
 
     $("#fold").on("click", function () {
@@ -77,9 +81,10 @@ function loadEvents() {
         changes.clear();
 
         $(".element").each((_, element) =>{
-            element = $(element).children(".infos");
-            element.children(".name").children().first().val(
-                localStorage.getItem(element.children(".path").children().first().val())
+            const $element = $(element).children(".infos");
+            const path = ($element.children(".path").children().first().val() || "");
+            $element.children(".name").children().first().val(
+                localStorage.getItem(path) || genName(path)
             )
         });
         updateSaveButton();
@@ -90,12 +95,14 @@ function elementsEvents() {
     $(".actions > .toggle").off("click").on("click", function (e) { 
         e.stopPropagation();
         const menu = $(this)[0].nextElementSibling;
-        if (!menu.classList.contains("active")) {
+        if (menu && !menu.classList.contains("active")) {
             $(document).trigger("click.actions");
         }
-        menu.classList.toggle("active");
+        if (menu) {
+            menu.classList.toggle("active");
+        }
         $(document).off("click.actions");
-        if (menu.classList.contains("active")) {
+        if (menu && menu.classList.contains("active")) {
             $(document).one("click.actions", function () {
                 menu.classList.remove("active");
             });
@@ -105,7 +112,7 @@ function elementsEvents() {
     $(".name > textarea").off("input").on("input", function () {
         const path = $(this).next().children().val();
         const name = $(this).val();
-        if (localStorage.getItem(path) !== name)
+        if (localStorage.getItem(path || "") !== name)
             changes.set(path, name);
         else
             changes.delete(path);

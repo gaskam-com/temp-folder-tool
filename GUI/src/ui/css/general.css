@@ -21,6 +21,9 @@
     :root {
         --color-background: #f5f5f5;
         --color-background-overlay: #79cdd6;
+        --color-background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='black' stroke-width='1.5' stroke-dasharray='10' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+
+        --color-svg-filter: invert(1);
 
         --color-button-save: #004225;
         --color-button-save-hover: #00572e;
@@ -43,6 +46,9 @@
     :root {
         --color-background: #1f1f1f;
         --color-background-overlay: #0f666f;
+        --color-background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='white' stroke-width='1.5' stroke-dasharray='10' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+
+        --color-svg-filter: invert(0);
 
         --color-button-save: #00c771;
         --color-button-save-hover: #10f188;
@@ -62,6 +68,8 @@
 
 /* Global styles */
 html {
+    margin: 0;
+    padding: 0;
     min-width: 800;
     min-height: 400;
     font-family: var(--font-system);
@@ -178,6 +186,12 @@ textarea {
 span {
     margin: 0;
     padding: 0;
+}
+
+img {
+    margin: 0;
+    padding: 0;
+    filter: var(--color-svg-filter);
 }
 
 .noselect {

@@ -4,7 +4,8 @@ const Allocator = std.mem.Allocator;
 
 const FolderConfig = struct {
     path: []const u8,
-    retention: u32
+    retention: u32,
+    name: ?[]const u8 = null
 };
 
 const Config = struct {

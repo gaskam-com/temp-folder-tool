@@ -1,7 +1,7 @@
 function getName(path) {
     const item = localStorage.getItem(path);
     if (item !== null) return item;
-    const value = /[\/\\]([^\/\\]*)[\/\\]{0,1}$/d.exec(path)[1];
+    const value = genName(path);
     localStorage.setItem(path, value);
     return value;
 }

@@ -127,19 +127,21 @@ body page .text content .elements .element .actions {
     position: sticky;
     z-index: 95;
 
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-body page .text content .elements .element .actions .toggle {
+body page .text content .elements .element .actions button {
+    /*! ERROR : element over all */
+    /* TODO : fix */
     margin: 0;
     padding: 1em;
     background-color: transparent;
     color: var(--color-text-default);
     position: relative;
-    z-index: -1;
+    z-index: 96;
 
     display: flex;
     align-items: center;
@@ -147,25 +149,24 @@ body page .text content .elements .element .actions .toggle {
     text-align: center;
 }
 
-body page .text content .elements .element .actions .toggle::after {
-    /* TODO: center ! */
+body page .text content .elements .element .actions button img {
     margin: 0;
     padding: 0;
-    content: '\2807';
-    font-size: 2em;
-    z-index: -1;
+    width: 2em;
+    height: 2em;
+    position: relative;
+    z-index: 96;
 }
 
 body page .text content .elements .element .actions .menu {
     visibility: hidden;
     position: absolute;
-    margin: 9em 0 0 7em;
+    margin: 0;
     padding: .5em 0;
     box-sizing: border-box;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(1em);
-    transition: all 0.1s ease-in-out;
     z-index: 97;
 
     display: flex;
@@ -208,7 +209,7 @@ body page .text content .add {
     width: var(--cards-width);
     box-sizing: border-box;
     border-radius: 10px;
-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='white' stroke-width='1.5' stroke-dasharray='10' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+    background-image: var(--color-background-image);
     border-radius: 10px;
     border-radius: 10px;
     transition: all 0.1s ease-in-out;
@@ -239,6 +240,6 @@ body page .text content .add button {
     }
 
     body page .text content .elements .element .actions .menu {
-        margin: 9em 0 0 -3em;
+        margin: 0 0 0 -5em;
     }
 }
