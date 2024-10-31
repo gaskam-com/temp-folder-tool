@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="./css/general.css" />
         <link rel="stylesheet" href="./css/sidebar.css" />
         <link rel="stylesheet" href="./css/header.css" />
-        <link rel="stylesheet" href="./css/contents/folders.css" />
+        <link rel="stylesheet" href="./css/contents/edit.css" />
         <link rel="stylesheet" href="./css/footer.css" />
         <title>Temp Folder</title>
     </head>
@@ -59,8 +59,9 @@
                         <div class="path">
                             <span
                                 ><a href="index.html">App</a> >
-                                <a href="#" id="section">Folders</a></span
-                            >
+                                <a href="index.html" id="section">Folders</a> >
+                                <a href="#" id="folder">Temp Folder</a>
+                            </span>
                         </div>
                         <div class="search">
                             <input type="text" placeholder="Search" id="input-search" />
@@ -68,68 +69,58 @@
                     </div>
                 </header>
                 <content>
-                    <div class="elements" id="elements">
-                        <div class="element">
-                            <div class="time">
-                                <textarea id="time" maxlength="5" readonly>
-12h</textarea
-                                >
-                            </div>
-                            <div class="infos">
-                                <div class="name">
-                                    <textarea id="name" maxlength="40">
-Folder name</textarea
-                                    >
-                                </div>
-                                <div class="path">
-                                    <textarea id="path" readonly>
-C:/User/Documents/Je suis nul en code/Temp Folder</textarea
-                                    >
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="toggle"><img src="img/more.svg"></button>
-                                <div class="menu">
-                                    <button id="open">Open in explorer</button>
-                                    <button id="edit">Edit</button>
-                                    <button class="delete" id="delete">
-                                        Delete
-                                    </button>
-                                </div>
+                    <div class="form">
+                        <div class="folder-name">
+                            <h5>Folder name</h5>
+                            <input type="text" id="folder-name" />
+                        </div>
+                        <div class="folder-path">
+                            <h5>Folder path</h5>
+                            <div class="input">
+                                <input type="text" id="folder-path" />
+                                <button id="select-folder">Select folder</button>
                             </div>
                         </div>
-                        <div class="element">
-                            <div class="time">
-                                <textarea id="time" maxlength="5" readonly>
-12h</textarea
-                                >
-                            </div>
-                            <div class="infos">
-                                <div class="name">
-                                    <textarea id="name" maxlength="40">
-Folder name</textarea
-                                    >
-                                </div>
-                                <div class="path">
-                                    <textarea id="path" readonly>
-C:/User/Documents/Je suis nul en code/Temp Folder</textarea
-                                    >
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="toggle"><img src="img/more.svg"></button>
-                                <div class="menu">
-                                    <button id="open">Open in explorer</button>
-                                    <button id="edit" href="edit.html">Edit</button>
-                                    <button class="delete" id="delete">
-                                        Delete
-                                    </button>
-                                </div>
+                        <div class="conservation-time">
+                            <h5>Default conservation time</h5>
+                            <div class="input">
+                                <input type="number" id="conservation-time" />
+                                <select id="conservation-time-unit">
+                                    <option value="days">Days</option>
+                                    <option value="weeks">Weeks</option>
+                                    <option value="months">Months</option>
+                                    <option value="years">Years</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="add">
-                        <button id="add">Add Folder</button>
+                    <div class="files">
+                        <div class="file">
+                            <div class="custom-time">
+                                <textarea id="custom-time" maxlength="5">
+12</textarea
+                                >
+                                <select id="custom-time-unit">
+                                    <option value="hours">Hours</option>
+                                    <option value="days">Days</option>
+                                    <option value="weeks">Weeks</option>
+                                    <option value="months">Months</option>
+                                    <option value="years">Years</option>
+                                </select>
+                            </div>
+                            <div class="infos">
+                                <div class="file-name">
+                                    <textarea id="file-name" readonly>
+File name</textarea
+                                    >
+                                </div>
+                                <div class="time-left">
+                                    <textarea id="time-left" readonly>
+10h</textarea
+                                    >
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </content>
             </div>

@@ -6,7 +6,7 @@ const swup = new Swup({
     containers: ["#swup"],
     hooks: {},
     ignoreVisit: (url, { el } = {}) => el?.closest("[data-no-swup]"),
-    linkSelector: "button[href]",
+    linkSelector: "button[href], a[href]",
     linkToSelf: "scroll",
     native: false,
     plugins: [],

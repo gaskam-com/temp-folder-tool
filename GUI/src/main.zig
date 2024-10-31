@@ -33,6 +33,7 @@ pub fn main() !void {
     _ = win.setIcon(my_icon, my_icon_type);
 
     _ = win.bind("update_folders", updateFolders);
+    _ = win.bind("change_config", changeConfig);
     _ = win.bind("close_app", close);
 
     _ = win.show("index.html");
@@ -57,6 +58,19 @@ fn updateFolders(event: *webui.Event) void {
     };
     buffer[fileContent.len] = 0;
     event.returnString(buffer[0..fileContent.len:0]);
+}
+
+fn changeConfig(event: *webui.Event) void {
+    const newConfig = event.getString();
+    const path = "../APP/config.json";
+    std.fs.cwd().writeFile(.{ 
+        .sub_path = path,
+        .data = newConfig
+    }) catch |e| {
+        std.debug.print("Unable to write config at path: {s}\n", .{path});
+        std.debug.print("Error: {}\n", .{e});
+        std.process.exit(1);
+    };
 }
 
 fn close(_: *webui.Event) void {

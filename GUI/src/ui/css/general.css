@@ -1,11 +1,11 @@
 /* General CSS for the GUI */
 
-@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200&display=swap');
 
 /* Global variables */
 :root {
     --font-system: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --font-title: 'Gugi', cursive;
+    --font-title: 'Source Code Pro', monospace;
 
     --color-black: #000;
     --color-off-black: #1f1f1f;
@@ -157,19 +157,7 @@ button {
 
 input {
     border: none;
-    border-radius: 1em;
     outline: none;
-    padding: 0.5em 1.5em;
-    font-size: 1em;
-    font-weight: bold;
-    color: var(--color-text-default);
-    background-color: rgba(0, 0, 0, 0.2);
-    transition: all 0.1s ease-in-out;
-}
-
-input:focus {
-    background-color: rgba(0, 0, 0, 0.3);
-    transition: all 0.1s ease-in-out;
 }
 
 textarea {

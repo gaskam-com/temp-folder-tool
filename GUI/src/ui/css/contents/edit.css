@@ -1,1 +1,98 @@
-/* Edit */
+/* Edit Page */
+
+body page .text content {
+    margin: 0;
+    padding: 7em 0 3em 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    background-color: var(--color-background);
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+body page .text content .form {
+    margin: 0;
+    padding: 0;
+    width: 85%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+body page .text content .form > div {
+    margin: 0;
+    padding: 1em;
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+}
+
+body page .text content .form div .input {
+    margin: 0;
+    padding: 0;
+}
+
+body page .text content .form div h5 {
+    margin: 0 0 1em 0;
+    padding: 0;
+    width: 100%;
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--color-text-default);
+}
+
+body page .text content .form div input {
+    margin: 0;
+    padding: 0.5em;
+    width: 100%;
+    max-width: 25em;
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--color-text-default);
+    background-color: rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 10px;
+    transition: all 0.1s ease-in-out;
+}
+
+body page .text content .form div input:focus {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+body page .text content .form .conservation-time input[type="number"] {
+    width: 100%;
+    text-align: center;
+    max-width: 5em;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0; 
+    border: 1px solid var(--color-text-default);
+    border-radius: 10px 0 0 10px;
+}
+
+body page .text content .form .conservation-time input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+body page .text content .form .conservation-time select {
+    margin: 0;
+    padding: 0.5em;
+    width: max-content;
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--color-text-default);
+    background-color: var(--color-background);
+    border: 1px solid var(--color-text-default);
+    border-radius: 0 10px 10px 0;
+    transition: all 0.1s ease-in-out;
+}
